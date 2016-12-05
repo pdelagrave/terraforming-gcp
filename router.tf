@@ -118,17 +118,8 @@ resource "google_compute_target_pool" "cf-ws" {
   name = "${var.env_name}-cf-ws"
 
   health_checks = [
-    "${google_compute_http_health_check.cf-ws-healthcheck.name}",
+    "${google_compute_http_health_check.cf-tcp.name}",
   ]
-}
-
-resource "google_compute_http_health_check" "cf-ws-healthcheck" {
-  name                = "${var.env_name}-cf-ws-healthcheck"
-  port                = 80
-  check_interval_sec  = 30
-  timeout_sec         = 5
-  healthy_threshold   = 10
-  unhealthy_threshold = 2
 }
 
 resource "google_compute_forwarding_rule" "cf-ws-https" {
