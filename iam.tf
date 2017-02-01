@@ -10,6 +10,14 @@ resource "google_project" "opsman_service_account_project" {
 
 data "google_iam_policy" "opsman_policy" {
   binding {
+    role = "roles/viewer"
+
+    members = [
+      "serviceAccount:${google_service_account.opsman_service_account.email}",
+    ]
+  }
+
+  binding {
     role = "roles/iam.serviceAccountActor"
 
     members = [
