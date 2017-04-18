@@ -153,3 +153,7 @@ output "ops_manager_private_key" {
 output "ops_manager_public_key" {
   value = "${format("ubuntu:%s", tls_private_key.ops-manager.public_key_openssh)}"
 }
+
+output "cf-ws_ip" {
+  value = "${google_compute_address.cf-ws.address}"
+}
